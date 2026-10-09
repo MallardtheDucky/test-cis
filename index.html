@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confederate Provincial Authority | Chain of Command</title>
+  <meta name="description" content="Chain of command of the Confederate Provincial Authority on Osseriton: Navy, Army, CONFEDINTEL, Droid Command Corps and Civil Administration ranks, insignia and dossiers.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Confederate Provincial Authority | Chain of Command">
+  <meta property="og:description" content="Full rank structure, insignia and dossiers for the Continuance Confederacy.">
+  <meta name="theme-color" content="#04060d">
+  <link rel="icon" type="image/svg+xml" href="assets/emblem.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="hud-vignette" aria-hidden="true"></div>
+
+  <a class="skip" href="#matrix">Skip to rank matrix</a>
+
+  <header class="topbar" id="top">
+    <a class="brand" href="#hero" aria-label="Confederate Provincial Authority, top of page">
+      <span id="brand-emblem"></span>
+      <span class="brand-text">
+        <span class="brand-name">Confederate Provincial Authority</span>
+        <span class="brand-sub aurebesh">Chain of Command</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#command">Command</a>
+      <a href="#matrix">Rank matrix</a>
+      <a href="#insignia">Insignia</a>
+      <a href="#branches">Branches</a>
+      <a href="#archive">Archive</a>
+      <a href="#charter">Charter</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <p class="hero-aurebesh aurebesh" aria-hidden="true">Confederate Provincial Authority</p>
+        <div class="hero-emblem" id="hero-emblem"></div>
+        <h1 class="hero-title">
+          <span class="hero-title-top">Confederate Provincial Authority</span>
+          <span class="hero-title-main">Chain of Command</span>
+        </h1>
+        <p class="hero-lede">Five centuries of unbroken government, kept alive on a hidden world. Every rank, insignia and line of authority of the Continuance Confederacy, from the Supreme Commander down to the newest cadet.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#matrix">Open the rank matrix</a>
+          <button class="btn" id="play-crawl" type="button">Play opening transmission</button>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>Capital</dt><dd>Osseriton</dd></div>
+          <div><dt>Region</dt><dd>Unknown Regions</dd></div>
+          <div><dt>Head of State</dt><dd>Supreme Commander Vexis</dd></div>
+          <div><dt>Year</dt><dd>500 ABY</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= COMMAND STRUCTURE ================= -->
+    <section class="section" id="command">
+      <header class="section-head">
+        <h2>The line of authority</h2>
+        <p>The Provincial Charter splits the state into a civil and a military branch. The military holds final authority during a declared security emergency, and the Permanent Emergency doctrine means that authority is never fully set aside. Select any box to open its ranks.</p>
+      </header>
+
+      <div class="chain">
+        <div class="node node-top">
+          <span class="node-title">Supreme Commander Vexis</span>
+          <span class="node-sub">ST-series Super Tactical Droid. Head of state, Warden of the Provincial Constitution, Protector of Confederate Continuity. Veto over all legislation.</span>
+          <button class="node-link" type="button" data-open="supreme:SC-1">View dossier</button>
+        </div>
+        <div class="chain-fork" aria-hidden="true"></div>
+        <div class="chain-cols">
+          <div class="panel chain-col">
+            <h3>Military authority</h3>
+            <p class="chain-note">Office of the Supreme Commander and the <strong>Military Senate</strong>: senior officers, droid commanders and defense officials who oversee security policy, fleet operations and emergency preparedness.</p>
+            <ul class="chain-list">
+              <li><button type="button" data-filter="navy"><span class="dot" style="background:#f5b800"></span>Confederate Navy<small>Fleet Groups, battlecruisers, carriers</small></button></li>
+              <li><button type="button" data-filter="army"><span class="dot" style="background:#9b0a0a"></span>Confederate Army<small>Garrisons, divisions, redoubts</small></button></li>
+              <li><button type="button" data-filter="droid"><span class="dot" style="background:#e8832a"></span>Droid Command Corps<small>ST-series to line droids</small></button></li>
+              <li><button type="button" data-filter="intel"><span class="dot" style="background:#3a3adf"></span>CONFEDINTEL<small>Internal Security and the Veil Network</small></button></li>
+            </ul>
+          </div>
+          <div class="panel chain-col">
+            <h3>Civil authority</h3>
+            <p class="chain-note">The Provincial Administration, led by the <strong>Minister President</strong> and answerable to the <strong>Civilian Council</strong>, elected from Osseriton’s districts including Hemes Arbora constituencies.</p>
+            <ul class="chain-list">
+              <li><button type="button" data-filter="civil"><span class="dot" style="background:#dfe9f6"></span>Civil Administration<small>Ministers, prefects, administrators</small></button></li>
+            </ul>
+            <p class="chain-ministries">Ministries: Agriculture, Industry, Education, Justice, Resource Continuance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RANK MATRIX ================= -->
+    <section class="section" id="matrix">
+      <header class="section-head">
+        <h2>Rank matrix</h2>
+        <p>Equivalent ranks sit on the same row. Select any rank for its dossier: insignia, addressing protocol, who it reports to and how it is reached.</p>
+      </header>
+
+      <div class="toolbar">
+        <div class="chips" id="chips" role="group" aria-label="Filter branches"></div>
+        <label class="search">
+          <span class="sr">Find a rank</span>
+          <input id="rank-search" type="search" placeholder="Find a rank, e.g. Captain" autocomplete="off">
+        </label>
+      </div>
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+
+      <div class="matrix-wrap">
+        <table class="matrix" id="matrix-table"></table>
+      </div>
+    </section>
+
+    <!-- ================= INSIGNIA GUIDE ================= -->
+    <section class="section" id="insignia">
+      <header class="section-head">
+        <h2>Reading the insignia</h2>
+        <p>Every plate is a strip of triangles on a colored field. The field says which branch the wearer serves, the number of triangles says how senior, and the bars add the wearer’s qualifications.</p>
+      </header>
+
+      <div class="guide">
+        <div class="panel guide-card">
+          <h3>Branch fields</h3>
+          <ul class="legend" id="legend-fields"></ul>
+        </div>
+        <div class="panel guide-card">
+          <h3>Triangle count</h3>
+          <p>One triangle is an entry grade. Each added triangle marks a step up, and the flag grades wear five or six. Orientation alternates along the strip, so the strip always reads as a continuous band.</p>
+          <div class="guide-plates" id="guide-count"></div>
+        </div>
+        <div class="panel guide-card">
+          <h3>Bars</h3>
+          <p>A bar under or over the strip records a qualification. The color depends on the branch.</p>
+          <ul class="legend" id="legend-bars"></ul>
+        </div>
+        <div class="panel guide-card guide-wide">
+          <h3>The Supreme Commander plate</h3>
+          <p>Twelve triangles in two rows, gold over crimson, beside the Confederate hexagon. It is worn on the field of both the Navy and the Army, because the Supreme Commander commands both.</p>
+          <div class="guide-plates" id="guide-supreme"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BRANCHES ================= -->
+    <section class="section" id="branches">
+      <header class="section-head">
+        <h2>Branch files</h2>
+        <p>Five services share one chain of command. Each has its own purpose, culture and field color.</p>
+      </header>
+      <div class="branch-grid" id="branch-grid"></div>
+    </section>
+
+    <!-- ================= ARCHIVE ================= -->
+    <section class="section" id="archive">
+      <header class="section-head">
+        <h2>How the chain was built</h2>
+        <p>The command structure carries the logic of its history: a government that never agreed it had ended.</p>
+      </header>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- ================= CHARTER ================= -->
+    <section class="section" id="charter">
+      <header class="section-head">
+        <h2>Provincial Charter at a glance</h2>
+        <p>The Provincial Charter of Confederate Continuance descends from CIS provincial statutes.</p>
+      </header>
+      <div class="charter-grid">
+        <div class="panel">
+          <h3>Government</h3>
+          <dl class="facts">
+            <div><dt>Official name</dt><dd>The Confederate Provincial Authority</dd></div>
+            <div><dt>Also known as</dt><dd>The Continuance Confederacy, the Provincial Confederacy, the CIS Remnant (external)</dd></div>
+            <div><dt>Capital system</dt><dd>Osseriton, Unknown Regions</dd></div>
+            <div><dt>Head of state</dt><dd>Supreme Commander Vexis</dd></div>
+            <div><dt>Head of government</dt><dd>Minister President of the Civil Administration</dd></div>
+            <div><dt>Legislature</dt><dd>Provincial Assembly: Civilian Council and Military Senate</dd></div>
+            <div><dt>Currency</dt><dd>Confederate Credit (C¢), 1 C¢ = 1.2 B¢</dd></div>
+          </dl>
+        </div>
+        <div class="panel">
+          <h3>Standing doctrines</h3>
+          <dl class="facts">
+            <div><dt>Permanent Emergency</dt><dd>Justifies extraordinary military authority while civil governance runs everything outside security.</dd></div>
+            <div><dt>Absolute Concealment</dt><dd>One world hidden is survivable. An empire is detectable.</dd></div>
+            <div><dt>Protocol of Continued Concealment</dt><dd>Remain hidden indefinitely while rebuilding strength.</dd></div>
+            <div><dt>Treaty of Shared Sanctuary</dt><dd>Joined the CIS exiles and the Hemes Arbora under one planetary government.</dd></div>
+            <div><dt>Final Phase</dt><dd>Restoration of the Confederate constitutional order that was never legally ended.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span id="footer-emblem"></span>
+      <p>Confederate Provincial Authority, Osseriton. Fan-made worldbuilding reference. Star Wars and its characters are the property of Lucasfilm and Disney; this is an unofficial fan project.</p>
+    </div>
+  </footer>
+
+  <!-- ================= RANK DOSSIER MODAL ================= -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card panel" role="dialog" aria-modal="true" aria-labelledby="m-rank">
+      <div class="modal-bar">
+        <span class="aurebesh m-aure" aria-hidden="true">Personnel record</span>
+        <span class="m-hint">Up and down arrows move along the chain. Esc closes.</span>
+        <button class="btn btn-small" type="button" data-close id="m-close">Close</button>
+      </div>
+      <div class="modal-body">
+        <aside class="m-side">
+          <div id="m-plates"></div>
+          <ol class="ladder" id="m-ladder" aria-label="Ranks in this branch"></ol>
+        </aside>
+        <div class="m-main">
+          <p class="m-branch" id="m-branch"></p>
+          <h2 id="m-rank"></h2>
+          <p class="m-post" id="m-post"></p>
+          <div class="m-stats">
+            <div><span>Grade</span><strong id="m-tier"></strong></div>
+            <div><span>Addressed as</span><strong id="m-address"></strong></div>
+            <div><span>Reports to</span><strong id="m-up"></strong></div>
+            <div><span>Directs</span><strong id="m-down"></strong></div>
+          </div>
+          <h3>Role</h3>
+          <p id="m-text"></p>
+          <h3>Branch</h3>
+          <p id="m-bintro"></p>
+          <h3>Insignia</h3>
+          <p id="m-bar"></p>
+          <h3>Path to the rank</h3>
+          <p id="m-path"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= OPENING CRAWL ================= -->
+  <div class="crawl" id="crawl" hidden role="dialog" aria-modal="true" aria-label="Opening transmission">
+    <button class="btn btn-small crawl-skip" type="button" id="crawl-skip">Skip transmission</button>
+    <p class="crawl-intro">A long time ago in a galaxy far, far away....</p>
+    <h2 class="crawl-logo">Continuance</h2>
+    <div class="crawl-viewport">
+      <div class="crawl-text">
+        <p class="crawl-title">THE CONTINUANCE</p>
+        <p>It is a period of silence. Five centuries have passed since the Separatist Council fell on Mustafar, and the galaxy believes the Confederacy of Independent Systems died with it.</p>
+        <p>It did not. Beneath the mountains of Osseriton, a hidden world in the Unknown Regions, Supreme Commander VEXIS, a Super Tactical Droid built from the mind of Admiral Trench, has kept the Confederate government alive, one unbroken session at a time.</p>
+        <p>Under the doctrine of Absolute Concealment, the Provincial Authority has watched the Empire rise, the Rebellion triumph and the Yuuzhan Vong burn the Core, and has never once answered.</p>
+        <p>Now the Republic has fallen into warlord states, and the order of the stars is coming apart. Vexis has judged that the age of concealment is ending.</p>
+        <p>From the fleets of the Confederate Navy to the legions of the Army, from the quiet agents of CONFEDINTEL to the droid commanders of the Corps, the Provincial Authority prepares for the FINAL PHASE of the Clone Wars....</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/insignia.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
